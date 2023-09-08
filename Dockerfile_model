@@ -1,0 +1,15 @@
+# Используем официальный образ Python
+FROM python:3.8
+
+# Устанавливаем рабочую директорию
+WORKDIR /usr/src/model
+
+# Устанавливаем зависимости
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем файлы модели
+COPY . .
+
+# Указываем команду для запуска сервиса модели
+CMD [ "python", "./model_service.py" ]
